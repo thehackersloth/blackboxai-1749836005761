@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoAgent Provider Integration Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">AutoAgent LLM Provider Integration</h1>
+        
+        <!-- Ollama Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Ollama Integration</h2>
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-medium">Configuration</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+OLLAMA_ENDPOINT=http://localhost:11434  # Optional
+                    </pre>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="font-medium">Available Models</h3>
+                    <ul class="list-disc list-inside mt-2">
+                        <li>phuzzy/darknemo:latest (recommended)</li>
+                        <li>codellama:7b</li>
+                        <li>llama2</li>
+                        <li>Any other models pulled to your Ollama server</li>
+                    </ul>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h3 class="font-medium">Usage Example</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+from autoagent import MetaChain
+from autoagent.types import Agent
+
+agent = Agent(
+    name="ollama_agent",
+    model="ollama/phuzzy/darknemo:latest",
+    instructions="You are a helpful assistant."
+)
+
+chain = MetaChain()
+response = chain.run(
+    agent=agent,
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perplexity Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-2xl font-semibold mb-4">Perplexity Integration</h2>
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-medium">Configuration</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+PERPLEXITY_API_KEY=your_api_key
+                    </pre>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h3 class="font-medium">Usage Example</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+agent = Agent(
+    name="perplexity_agent",
+    model="perplexity/pplx-7b-chat",
+    instructions="You are a helpful assistant."
+)
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Anthropic Section -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold mb-4">Anthropic Integration</h2>
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-medium">Configuration</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+ANTHROPIC_API_KEY=your_api_key
+                    </pre>
+                </div>
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h3 class="font-medium">Usage Example</h3>
+                    <pre class="bg-gray-50 p-3 rounded mt-2">
+agent = Agent(
+    name="anthropic_agent",
+    model="anthropic/claude-3-opus-20240229",
+    instructions="You are a helpful assistant."
+)
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
